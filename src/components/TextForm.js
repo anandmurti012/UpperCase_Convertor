@@ -109,8 +109,8 @@ export default function TextForm(props) {
   //For Lowercase
   const handleLowerclick = () => {
     console.log("button clicked");
-    let newTextt = textt.toLowerCase();    //To convert into Lowercase
-    setTextt(newTextt);
+    let newText = text.toLowerCase();    //To convert into Lowercase
+    setText(newText);
   }
 
   const handleOnChange = (event) => {
@@ -118,31 +118,26 @@ export default function TextForm(props) {
 setText(event.target.value);
   }
 
-  //For Lowercase Onchange
-  const handleOnChangeLower = (event) => {
-// console.log("On change event handler is working");
-setTextt(event.target.value);
-  }
 
-// For Uppercase
 const [text, setText] = useState('');
-
-//For Lowercase
-const [textt, setTextt] = useState('');
  
 
   return (
-    <div>
-    <h2>{props.heading}</h2>
+    <div className='container'>
+       <h2>{props.heading}</h2>
        <div className="mb-3">
-       {/* Textare for Uppercase */}
-         <textarea className="form-control" id="myBox" placeholder='Enter the text to convert into Uppercase' onChange={handleOnChange} value={text} rows="8"></textarea>
-         <button className='btn btn-primary' onClick={handleUpperclick}>Convert to Uppercase</button>
-        
-        {/* Textarea for Lowercase */}
-         <textarea className="form-control" id="myBox" placeholder='Enter the text to convert into Lowercase' onChange={handleOnChangeLower} value={textt} rows="8"></textarea>
-         <button className='btn btn-primary' onClick={handleLowerclick}>Convert to Lowercase</button>
+         <textarea className="form-control" id="myBox" placeholder='Enter the text to convert into Uppercase/Lowercase' onChange={handleOnChange} value={text} rows="8"></textarea>
+       </div>
+         <button className='btn btn-primary mx-1' onClick={handleUpperclick}>Convert to Uppercase</button>
+         <button className='btn btn-primary mx-1' onClick={handleLowerclick}>Convert to Lowercase</button>
+        <div className='conatiner my-3'>
+            <h2>Your Text Summary</h2>
+            <p><strong>{text.split(" ").length}</strong> words and text <strong>{text.length}</strong> characters</p>
+            <p>{0.008 * text.split(" ").length} Minutes read</p>
+            <h3>Preview</h3>
+            <p>{text}</p>
         </div>
       </div>
+    
   )
 }
